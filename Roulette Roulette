@@ -1,10 +1,22 @@
+--Occult Relic Helper? I don't really know.
+--It will spam duty roulettes, if no roulette is insta queued as first class assigned it'll try spam with the other ones.
+
+ChangeJob = true
+ChangeRoulette = true
+
+local RouletteTable = {
+    2,  --High-Level Dungeons
+    6,  --Trials
+    15, --Alliance Raids
+    17  --Normal Raids
+
  }
 local RouletteIndex = 1
 
-local JobTable = {
-    "PCT",
-    "WAR",
-    "SGE"
+local JobTable = { 
+    "PCT",        --Change class name here
+    "WAR",        --Change class name here
+    "SGE"         --Change class name here
 }
 local JobIndex = 1
 
@@ -32,3 +44,6 @@ while Instances.DutyFinder.QueueState ~= Instances.DutyFinder.QueueState.Ready d
     end
 
 end
+
+yield("/xltogglecollection Sujeira")
+
