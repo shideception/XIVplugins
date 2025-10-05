@@ -1,0 +1,34 @@
+ }
+local RouletteIndex = 1
+
+local JobTable = {
+    "PCT",
+    "WAR",
+    "SGE"
+}
+local JobIndex = 1
+
+--==============================================================================--
+
+while Instances.DutyFinder.QueueState ~= Instances.DutyFinder.QueueState.Ready do
+
+    if ChangeJob == true then
+        if RouletteIndex == 1 then
+            yield("/equipjob " .. JobTable[JobIndex])
+            JobIndex = JobIndex + 1
+        end
+    end
+
+    Instances.DutyFinder:QueueRoulette( RouletteTable[RouletteIndex] )
+    yield("/wait 1")
+    Instances.DutyFinder:CancelQueue()
+    yield("/wait 1")
+
+    if ChangeRoulette == true then
+        RouletteIndex = RouletteIndex + 1
+        if RouletteIndex > #RouletteTable then
+            RouletteIndex = 1
+        end
+    end
+
+end
